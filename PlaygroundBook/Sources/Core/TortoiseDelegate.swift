@@ -2,20 +2,12 @@ import Foundation
 
 protocol TortoiseDelegate: class {
 
-    func tortoiseDidInitialized(_ uuid: UUID, _ state: TortoiseState)
+    func tortoiseDidInitialize(id: UUID, state: TortoiseState)
 
-    func tortoiseDidChangePosition(_ uuid: UUID, _ state: TortoiseState)
+    func tortoiseDidChangeState(id: UUID, oldState: TortoiseState, newState: TortoiseState)
 
-    func tortoiseDidChangeHeading(_ uuid: UUID, _ state: TortoiseState)
+    func tortoiseDidRequestToClear(id: UUID)
 
-    func tortoiseDidChangePen(_ uuid: UUID, _ state: TortoiseState)
-
-    func tortoiseDidChangeShape(_ uuid: UUID, _ state: TortoiseState)
-
-    func tortoiseDidRequestToFill(_ uuid: UUID, _ state: TortoiseState)
-
-    func tortoiseDidRequestToClear(_ uuid: UUID, _ state: TortoiseState)
-
-    func tortoiseDidAddToOtherCanvas(_ uuid: UUID, _ state: TortoiseState)
+    func tortoiseDidAddToOtherCanvas(id: UUID, state: TortoiseState)
 
 }
