@@ -35,24 +35,18 @@ public struct Color: Equatable, Codable, CustomStringConvertible {
 
     // MARK: - Internal
 
-    enum Mode: String, Codable {
-        case range1
-        case range255
+    enum Mode: Int, Codable {
+        case range1 = 1
+        case range255 = 255
     }
 
     static var currentMode: Mode = .range255
 
     init(_ r: Double, _ g: Double, _ b: Double, name: String? = nil, mode: Mode) {
-        switch mode {
-        case .range1:
-            self._r = max(0.0, r, min(r, 1.0))
-            self._g = max(0.0, g, min(g, 1.0))
-            self._b = max(0.0, b, min(b, 1.0))
-        case .range255:
-            self._r = max(0.0, r, min(r, 255.0)) / 255.0
-            self._g = max(0.0, g, min(g, 255.0)) / 255.0
-            self._b = max(0.0, b, min(b, 255.0)) / 255.0
-        }
+        let maxValue = Double(mode.rawValue)
+        self._r = max(0.0, r, min(r, maxValue)) / maxValue
+        self._g = max(0.0, g, min(g, maxValue)) / maxValue
+        self._b = max(0.0, b, min(b, maxValue)) / maxValue
         self.name = name
     }
 

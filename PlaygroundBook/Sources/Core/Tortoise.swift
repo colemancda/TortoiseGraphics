@@ -36,7 +36,7 @@ public class Tortoise {
     }
 
     public func setPosition(_ x: Double, _ y: Double) {
-        setPosition(x, y)
+        setPosition(Vec2D(x, y))
     }
 
     public func setX(_ x: Double) {
@@ -90,12 +90,6 @@ public class Tortoise {
         return state.speed
     }
 
-    public func `repeat`(_ times: Int, _ block: () -> Void) {
-        if times > 0 {
-            (0 ..< times).forEach { _ in block() }
-        }
-    }
-
     // MARK: - [Motion] Tell tortoise's state
 
     public var position: Vec2D {
@@ -135,11 +129,6 @@ public class Tortoise {
 
     public func distance(_ position: Vec2D) -> Double {
         return distance(position.x, position.y)
-    }
-
-    public func random(_ max: Double) -> Double {
-        let upperBound = UInt32(Swift.min(Swift.max(Int64(max), 0), Int64(UInt32.max)))
-        return Double(arc4random_uniform(upperBound))
     }
 
     // MARK: - [Pen control] Drawing state

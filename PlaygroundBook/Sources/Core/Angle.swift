@@ -12,16 +12,16 @@ struct Angle: Equatable, Codable {
     init(_ value: Double, _ unit: Unit = Angle.currentUnit) {
         switch unit {
         case .degree:
-            self.degree = value
+            self.radian = value * (.pi / 180.0)
         case .radian:
-            self.degree = Angle(value, .radian).degree
+            self.radian = value
         }
     }
 
-    let degree: Double
+    let radian: Double
 
-    var radian: Double {
-        return degree * (.pi / 180.0)
+    var degree: Double {
+        return radian * (180.0 / .pi)
     }
 
     var value: Double {
